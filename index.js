@@ -66,11 +66,19 @@ async function run() {
             res.send(result);
         })
 
-        app.get('/updateArtAndCraft/:_id', async (req, res) => {
+        app.get('/singleArtAndCraft/:_id', async (req, res) => {
             console.log (req.params._id);
             const result = await artCollection.findOne({ _id: new ObjectId(req.params._id) ,});
-            console.log(result);
+            // console.log(result);
             res.send(result); 
+        })
+
+        app.delete('/deleteArtAndCraft/:_id', async (req, res) => {
+            const id = req.params._id;
+            const query = { _id: new ObjectId(id) }
+            const result = await artCollection.deleteOne(query);
+            // console.log(result);
+            res.send(result);
         })
 
 
